@@ -8,7 +8,7 @@ import {
   Zap,
 } from "lucide-react";
 
-import heroAsset from "@/assets/rev.png.asset.json";
+import heroAsset from "@/assets/revolut-red.png.asset.json";
 import { Button } from "@/components/ui/button";
 
 // Change this to your own link whenever you're ready.
@@ -22,7 +22,9 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Get £750 with Revolut" },
       { property: "og:description", content: "Complete simple tasks & get rewarded instantly." },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: heroAsset.url },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: heroAsset.url },
     ],
   }),
   component: Index,
