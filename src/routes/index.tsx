@@ -119,7 +119,7 @@ function Index() {
           <div className="rise-in mt-5" style={delay(140)}>
             <Button
               asChild
-              className="btn-lift flex h-[52px] w-full rounded-full text-[16px] font-semibold tracking-[-0.01em]"
+              className="btn-lift mx-auto flex h-[52px] w-[92%] rounded-full text-[16px] font-semibold tracking-[-0.01em]"
             >
               <a href={GET_STARTED_URL}>Get Started</a>
             </Button>
