@@ -49,7 +49,7 @@ const claimants = [
 
 type Claim = { claimant: string; amount: string; id: number };
 
-const INITIAL_CLAIM: Claim = { claimant: claimants[0], amount: "48.50", id: 0 };
+const INITIAL_CLAIM: Claim = { claimant: "Amelia. T from Bristol", amount: "48.50", id: 0 };
 
 function randomAmount() {
   const chance = Math.random();
@@ -59,8 +59,9 @@ function randomAmount() {
 
 function nextClaim(previous: Claim): Claim {
   const choices = claimants.filter((claimant) => claimant !== previous.claimant);
+  const claimant = choices[Math.floor(Math.random() * choices.length)] ?? "Oliver. H from London";
   return {
-    claimant: choices[Math.floor(Math.random() * choices.length)],
+    claimant,
     amount: randomAmount(),
     id: previous.id + 1,
   };
