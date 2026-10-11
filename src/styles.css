@@ -211,6 +211,12 @@
   .claim-fade {
     transition: opacity 200ms linear;
   }
+  .btn-lift:hover,
+  .btn-lift:focus-visible,
+  .btn-lift:active {
+    transform: none;
+    filter: none;
+  }
 }
 
 .dark {
