@@ -95,7 +95,7 @@ function Index() {
       <div className="rise-in glass relative mx-auto w-full max-w-md overflow-hidden rounded-[30px] border border-border bg-card" style={delay(60)}>
         <div className="px-5 pb-6 pt-5">
           <div
-            className="rise-in relative overflow-hidden rounded-[22px] bg-secondary shadow-[0_18px_36px_-22px_oklch(0_0_0/0.9)] ring-1 ring-white/10"
+            className="frame-hairline rise-in relative overflow-hidden rounded-[22px] bg-secondary"
             style={delay(80)}
           >
             <img
@@ -119,7 +119,7 @@ function Index() {
           <div className="rise-in mt-5" style={delay(140)}>
             <Button
               asChild
-              className="flex h-[52px] w-full rounded-full text-[16px] font-semibold tracking-[-0.01em] shadow-none transition-transform duration-200 active:scale-[0.98]"
+              className="btn-lift flex h-[52px] w-full rounded-full text-[16px] font-semibold tracking-[-0.01em] transition-transform duration-200 active:scale-[0.98]"
             >
               <a href={GET_STARTED_URL}>Get Started</a>
             </Button>
@@ -153,7 +153,7 @@ function Index() {
                 <span className="bar-shimmer absolute inset-y-0 left-0 w-1/3" />
               </div>
             </div>
-            <p className="mt-2 text-[11px] text-muted-foreground">Finish your offers to unlock the rest</p>
+            <p className="mt-2 text-[11px] text-muted-foreground">Complete offers to earn!</p>
           </div>
 
           <section className="rise-in mt-8" style={delay(260)}>
