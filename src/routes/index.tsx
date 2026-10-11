@@ -85,10 +85,10 @@ function Index() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-background pb-36 text-foreground">
-      <div className="mx-auto w-full max-w-xl overflow-hidden">
-        <div className="px-5 pt-5 sm:px-7 sm:pt-7">
-          <div className="aspect-video overflow-hidden rounded-[28px] bg-card">
+    <main className="min-h-screen bg-background pb-28 text-foreground">
+      <div className="mx-auto w-full max-w-md">
+        <div className="px-4 pt-4">
+          <div className="aspect-video overflow-hidden rounded-2xl bg-card">
             <img
               src={heroAsset.url}
               alt="Revolut promotional artwork"
@@ -98,59 +98,61 @@ function Index() {
             />
           </div>
 
-          <h1 className="mt-9 text-center text-[34px] font-bold leading-[1.08] sm:text-[40px]">
+          <h1 className="mt-6 text-center text-[28px] font-semibold leading-[1.15] tracking-[-0.03em]">
             Get £750 with Revolut
           </h1>
-          <p className="mx-auto mt-3 max-w-sm text-center text-base leading-6 text-muted-foreground">
+          <p className="mx-auto mt-2 max-w-xs text-center text-[15px] leading-[1.4] tracking-[-0.01em] text-muted-foreground">
             Complete simple tasks &amp; get rewarded instantly
           </p>
 
-          <div className="mt-7 min-h-12 rounded-2xl bg-card px-4 py-3 text-center text-sm leading-6">
-            <div key={claim.id} className="claim-enter flex items-center justify-center gap-2">
-              <span className="relative flex h-2 w-2 shrink-0">
+          <div className="mt-5 flex h-11 items-center justify-center overflow-hidden rounded-full bg-card px-4 text-[13px]">
+            <div key={claim.id} className="claim-enter flex min-w-0 items-center justify-center gap-2">
+              <span className="relative flex h-1.5 w-1.5 shrink-0">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-success" />
               </span>
-              <p>
-                <span className="font-semibold">{claim.claimant}</span>
+              <p className="truncate tracking-[-0.01em]">
+                <span className="font-medium">{claim.claimant}</span>
                 <span className="text-muted-foreground"> just received </span>
                 <span className="font-semibold">£{claim.amount}</span>
               </p>
             </div>
           </div>
 
-          <h2 className="mt-10 text-xl font-semibold leading-7">How to earn your reward</h2>
-          <ol className="mt-4 space-y-7 rounded-[28px] bg-card px-5 py-7 sm:px-6">
+          <h2 className="mb-2 mt-8 px-1 text-[17px] font-semibold tracking-[-0.02em]">How to earn your reward</h2>
+          <ol className="divide-y divide-border overflow-hidden rounded-2xl bg-card">
             {steps.map((s) => (
-              <li key={s.title} className="flex gap-4 sm:gap-5">
-                <s.icon className="mt-0.5 h-6 w-6 shrink-0" strokeWidth={1.8} />
+              <li key={s.title} className="flex items-center gap-3.5 px-4 py-3.5">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-secondary">
+                  <s.icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
+                </span>
                 <div className="min-w-0">
-                  <p className="text-[17px] font-medium leading-6">{s.title}</p>
-                  <p className="mt-1 text-[15px] leading-[1.45] text-muted-foreground">{s.text}</p>
+                  <p className="text-[15px] font-medium leading-5 tracking-[-0.015em]">{s.title}</p>
+                  <p className="mt-0.5 text-[13px] leading-[1.35] tracking-[-0.005em] text-muted-foreground">{s.text}</p>
                 </div>
               </li>
             ))}
           </ol>
 
-          <div className="mt-5 grid grid-cols-2 gap-3">
-            <div className="flex min-w-0 items-center gap-3 rounded-2xl bg-card px-4 py-4">
-              <Zap className="h-5 w-5 shrink-0" strokeWidth={1.8} />
-              <span className="text-sm font-medium">Instant payout</span>
+          <div className="mt-3 grid grid-cols-2 gap-3">
+            <div className="flex min-w-0 items-center gap-2.5 rounded-2xl bg-card px-4 py-3.5">
+              <Zap className="h-[18px] w-[18px] shrink-0" strokeWidth={1.75} />
+              <span className="text-[13px] font-medium tracking-[-0.01em]">Instant payout</span>
             </div>
-            <div className="flex min-w-0 items-center gap-3 rounded-2xl bg-card px-4 py-4">
-              <ShieldCheck className="h-5 w-5 shrink-0" strokeWidth={1.8} />
-              <span className="text-sm font-medium">Protected</span>
+            <div className="flex min-w-0 items-center gap-2.5 rounded-2xl bg-card px-4 py-3.5">
+              <ShieldCheck className="h-[18px] w-[18px] shrink-0" strokeWidth={1.75} />
+              <span className="text-[13px] font-medium tracking-[-0.01em]">Protected</span>
             </div>
           </div>
 
-          <p className="mt-10 text-center text-xs leading-5 text-muted-foreground">
+          <p className="mt-8 text-center text-[11px] leading-4 text-muted-foreground">
             Not affiliated with TikTok or Revolut.
           </p>
         </div>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-background/95 px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-4 backdrop-blur sm:px-7">
-        <Button asChild className="mx-auto flex h-14 w-full max-w-xl rounded-full text-[17px] font-semibold shadow-none active:scale-[0.98]">
+      <div className="fixed inset-x-0 bottom-0 z-20 bg-gradient-to-t from-background from-70% to-transparent px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-6">
+        <Button asChild className="mx-auto flex h-12 w-full max-w-md rounded-full text-[16px] font-semibold tracking-[-0.01em] shadow-none active:scale-[0.98]">
           <a href={GET_STARTED_URL}>Get Started</a>
         </Button>
       </div>
