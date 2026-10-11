@@ -158,11 +158,11 @@
     &:hover,
     &:focus-visible {
       background-color: oklch(1 0 0);
-      transform: translateZ(0) scale(1.065) translateY(-2px);
+      transform: translateZ(0) scale(1.1) translateY(-3px);
     }
     &:active {
       background-color: oklch(0.94 0 0);
-      transform: translateZ(0) scale(1.03) translateY(-1px);
+      transform: translateZ(0) scale(1.05) translateY(-1px);
     }
   }
 }
