@@ -89,7 +89,7 @@
   --border: oklch(1 0 0 / 9%);
   --brand: oklch(0.62 0.2 262);
   --brand-glow: oklch(0.7 0.18 300);
-  --gradient-bg: radial-gradient(120% 60% at 50% -10%, oklch(0.42 0.2 265 / 0.9), transparent 60%), radial-gradient(80% 50% at 100% 30%, oklch(0.4 0.2 300 / 0.55), transparent 65%), radial-gradient(70% 45% at 0% 70%, oklch(0.35 0.15 240 / 0.45), transparent 70%), linear-gradient(180deg, oklch(0.14 0.05 268), oklch(0.07 0.02 270));
+  --gradient-bg: radial-gradient(120% 55% at 50% -12%, oklch(0.3 0.13 265 / 0.75), transparent 60%), radial-gradient(80% 50% at 100% 30%, oklch(0.27 0.12 300 / 0.4), transparent 65%), radial-gradient(70% 45% at 0% 70%, oklch(0.24 0.1 240 / 0.35), transparent 70%), linear-gradient(180deg, oklch(0.1 0.03 268), oklch(0.055 0.015 270));
   --gradient-bar: linear-gradient(90deg, oklch(0.62 0.2 262), oklch(0.7 0.18 300), oklch(0.78 0.14 330));
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.7 0 0);
@@ -151,13 +151,13 @@
   background: var(--gradient-bar);
   background-size: 200% 100%;
   animation: bar-grow 1600ms cubic-bezier(0.22,1,0.36,1) 400ms both, bar-flow 4s linear infinite;
-  box-shadow: 0 0 12px oklch(0.65 0.2 280 / 0.6);
+  box-shadow: 0 0 8px oklch(0.65 0.2 280 / 0.35);
 }
 @keyframes bar-grow { from { width: 0; } }
 @keyframes bar-flow { to { background-position: -200% 0; } }
 @utility bar-shimmer {
-  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.45), transparent);
-  animation: bar-shimmer 2.4s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.22), transparent);
+  animation: bar-shimmer 3.8s ease-in-out infinite;
 }
 @keyframes bar-shimmer { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
 @utility fizz {
