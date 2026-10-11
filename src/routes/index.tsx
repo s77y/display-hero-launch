@@ -100,7 +100,7 @@ function Index() {
 
   return (
     <main className="bg-app min-h-screen px-4 pb-8 pt-6 text-foreground sm:pt-10">
-      <div className="rise-in relative mx-auto w-[86%] max-w-[360px]">
+      <div className="rise-in relative z-10 mx-auto w-[86%] max-w-[360px]">
         <div className="hero-halo pointer-events-none absolute -inset-6" />
         <div className="hero-float relative aspect-video overflow-hidden rounded-[22px]">
           <img
