@@ -80,7 +80,7 @@ function Index() {
           setClaim((c) => nextClaim(c));
           setVisible(true);
           cycle();
-        }, 550);
+        }, 950);
       }, 3000 + Math.random() * 2000);
     };
     cycle();
