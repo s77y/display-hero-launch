@@ -20,7 +20,6 @@
 
 @theme inline {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --color-surface-raised: var(--surface-raised);
   --color-success: var(--success);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -69,10 +68,7 @@
   --background: oklch(0 0 0);
   --foreground: oklch(0.99 0 0);
   --card: oklch(0.215 0.004 286);
-  --surface-raised: oklch(0.32 0.004 286);
   --success: oklch(0.78 0.18 150);
-  --hero-glow: radial-gradient(60% 70% at 50% 40%, oklch(0.55 0.2 270 / 0.45), oklch(0.5 0.22 320 / 0.15) 50%, transparent 75%);
-  --hero-fade: linear-gradient(to bottom, transparent 45%, oklch(0 0 0));
   --shadow-card: 0 20px 40px -20px oklch(0 0 0 / 0.8);
   --shadow-soft: none;
   --card-foreground: oklch(0.99 0 0);
@@ -104,6 +100,27 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+@keyframes claim-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility claim-enter {
+  animation: claim-enter 420ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .claim-enter {
+    animation: none;
+  }
 }
 
 .dark {
