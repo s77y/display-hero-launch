@@ -153,7 +153,7 @@ function Index() {
                 <span className="bar-shimmer absolute inset-y-0 left-0 w-1/3" />
               </div>
             </div>
-            <p className="mt-2 text-[11px] text-muted-foreground">Complete offers to earn!</p>
+            <p className="mt-3 text-[11px] text-muted-foreground">Complete offers to earn!</p>
           </div>
 
           <section className="rise-in mt-8" style={delay(260)}>
@@ -171,7 +171,7 @@ function Index() {
                     <p className="mt-0.5 text-[13px] leading-[1.35] text-muted-foreground">{s.text}</p>
                   </div>
                   {i < steps.length - 1 && (
-                    <span className="absolute bottom-0 left-[58px] right-1 h-px bg-border" />
+                    <span className="absolute bottom-0 left-0 right-0 h-px bg-border" />
                   )}
                 </li>
               ))}
