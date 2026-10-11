@@ -8,7 +8,7 @@ import {
   Zap,
 } from "lucide-react";
 
-import heroAsset from "@/assets/rev.png.asset.json";
+import heroAsset from "@/assets/rev3.png.asset.json";
 import { Button } from "@/components/ui/button";
 
 // Change this to your own link whenever you're ready.
@@ -179,7 +179,7 @@ function Index() {
             </div>
             <div className="relative h-2 rounded-full bg-secondary">
               <div className="bar-fill relative h-full w-[60%] overflow-hidden rounded-full">
-                <span className="bar-shimmer absolute inset-y-0 left-0 w-1/3" />
+                <span className="bar-shimmer absolute inset-0" />
               </div>
             </div>
             <p className="mt-3 text-[11px] text-muted-foreground">Complete offers to earn!</p>

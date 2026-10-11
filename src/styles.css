@@ -91,6 +91,7 @@
   --brand-glow: oklch(0.7 0.18 300);
   --gradient-bg: radial-gradient(120% 55% at 50% -12%, oklch(0.3 0.13 265 / 0.75), transparent 60%), radial-gradient(80% 50% at 100% 30%, oklch(0.27 0.12 300 / 0.4), transparent 65%), radial-gradient(70% 45% at 0% 70%, oklch(0.24 0.1 240 / 0.35), transparent 70%), linear-gradient(180deg, oklch(0.1 0.03 268), oklch(0.055 0.015 270));
   --gradient-bar: linear-gradient(90deg, oklch(0.62 0.2 262), oklch(0.7 0.18 300), oklch(0.78 0.14 330));
+  --gradient-progress-shine: linear-gradient(90deg, transparent 0%, oklch(1 0 0 / 0.02) 20%, oklch(1 0 0 / 0.10) 45%, oklch(1 0 0 / 0.14) 55%, oklch(1 0 0 / 0.06) 72%, transparent 100%);
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.7 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -186,10 +187,16 @@
 @keyframes bar-grow { from { width: 0; } }
 @keyframes bar-flow { to { background-position: -200% 0; } }
 @utility bar-shimmer {
-  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.22), transparent);
-  animation: bar-shimmer 3.8s ease-in-out infinite;
+  background: var(--gradient-progress-shine);
+  animation: bar-shimmer 4.8s ease-in-out infinite;
 }
-@keyframes bar-shimmer { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+@keyframes bar-shimmer {
+  0% { transform: translateX(-100%); opacity: 0; }
+  20% { opacity: 0.65; }
+  50% { opacity: 1; }
+  80% { opacity: 0; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
 @utility fizz {
   animation: fizz 1.8s ease-out infinite;
 }
