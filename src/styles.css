@@ -159,11 +159,11 @@
   &&:hover,
   &&:focus-visible {
     background-color: oklch(1 0 0);
-    transform: scale(1.1);
+    transform: scale(1.045);
   }
   &&:active {
     background-color: oklch(0.94 0 0);
-    transform: scale(1.06);
+    transform: scale(1.02);
   }
 }
 @utility hero-float {
