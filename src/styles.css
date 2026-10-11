@@ -149,6 +149,8 @@
   && {
     transform: scale(1);
     will-change: transform;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition:
       transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
       background-color 360ms cubic-bezier(0.22, 1, 0.36, 1) !important;
