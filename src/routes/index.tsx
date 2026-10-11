@@ -35,13 +35,6 @@ const steps = [
   { icon: CreditCard, title: "Receive your reward", text: "Paid to your Revolut account, add it to Apple or Google Pay" },
 ];
 
-const sparks: [string, string, string][] = [
-  ["6px", "-9px", "0ms"],
-  ["10px", "4px", "450ms"],
-  ["3px", "10px", "900ms"],
-  ["12px", "-3px", "1300ms"],
-  ["-4px", "-10px", "650ms"],
-];
 
 const claimants = [
   "Amelia. T from Bristol",
@@ -100,9 +93,8 @@ function Index() {
 
   return (
     <main className="bg-app min-h-screen px-4 pb-8 pt-6 text-foreground sm:pt-10">
-      <div className="rise-in relative z-10 mx-auto w-[86%] max-w-[360px]">
-        <div className="hero-halo pointer-events-none absolute -inset-6" />
-        <div className="hero-float relative aspect-video overflow-hidden rounded-[22px]">
+      <div className="rise-in glass relative mx-auto w-full max-w-md overflow-hidden rounded-[30px] border border-border bg-card" style={delay(60)}>
+        <div className="relative aspect-video w-full">
           <img
             src={heroAsset.url}
             alt="Revolut promotional artwork"
@@ -110,11 +102,9 @@ function Index() {
             height={1080}
             className="h-full w-full object-cover"
           />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-card" />
         </div>
-      </div>
-
-      <div className="rise-in glass relative mx-auto -mt-10 w-full max-w-md rounded-[30px] border border-border bg-card" style={delay(60)}>
-        <div className="px-5 pb-6 pt-16">
+        <div className="px-5 pb-6 pt-5">
           <div className="rise-in text-center" style={delay(80)}>
             <h1 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.035em]">
               Get £750 with Revolut
@@ -133,29 +123,7 @@ function Index() {
             </Button>
           </div>
 
-          <div className="rise-in mt-5" style={delay(170)}>
-            <div className="mb-2 flex items-baseline justify-between text-[12px] tracking-[-0.005em]">
-              <span className="text-muted-foreground">Reward progress</span>
-              <span className="font-medium tabular-nums">£450 <span className="text-muted-foreground">/ £750</span></span>
-            </div>
-            <div className="relative h-2 rounded-full bg-secondary">
-              <div className="bar-fill relative h-full w-[60%] overflow-hidden rounded-full">
-                <span className="bar-shimmer absolute inset-y-0 left-0 w-1/3" />
-              </div>
-              <div className="pointer-events-none absolute top-1/2 left-[60%]">
-                {sparks.map((sp, i) => (
-                  <span
-                    key={i}
-                    className="fizz absolute h-1 w-1 rounded-full bg-primary"
-                    style={{ ["--fx" as string]: sp[0], ["--fy" as string]: sp[1], animationDelay: sp[2], marginTop: -2, marginLeft: -2 } as React.CSSProperties}
-                  />
-                ))}
-              </div>
-            </div>
-            <p className="mt-2 text-[11px] text-muted-foreground">60% complete — finish your offers to unlock the rest</p>
-          </div>
-
-          <div className="rise-in mt-4 flex justify-center" style={delay(200)}>
+          <div className="rise-in mt-4 flex justify-center" style={delay(170)}>
             <div
               className={`claim-fade flex max-w-full items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-[12px] tracking-[-0.005em] ${
                 visible ? "translate-y-0 opacity-100 blur-0" : "translate-y-0.5 opacity-0 blur-[2px]"
@@ -173,9 +141,22 @@ function Index() {
             </div>
           </div>
 
+          <div className="rise-in mt-5" style={delay(200)}>
+            <div className="mb-2 flex items-baseline justify-between text-[12px] tracking-[-0.005em]">
+              <span className="text-muted-foreground">Reward progress</span>
+              <span className="font-medium tabular-nums">60%</span>
+            </div>
+            <div className="relative h-2 rounded-full bg-secondary">
+              <div className="bar-fill relative h-full w-[60%] overflow-hidden rounded-full">
+                <span className="bar-shimmer absolute inset-y-0 left-0 w-1/3" />
+              </div>
+            </div>
+            <p className="mt-2 text-[11px] text-muted-foreground">Finish your offers to unlock the rest</p>
+          </div>
+
           <section className="rise-in mt-8" style={delay(260)}>
-            <h2 className="mb-1 px-1 text-[13px] font-medium uppercase tracking-[0.06em] text-muted-foreground">
-              How it works
+            <h2 className="mb-1 px-1 text-[15px] font-semibold tracking-[-0.015em]">
+              How does it work?
             </h2>
             <ol>
               {steps.map((s, i) => (
