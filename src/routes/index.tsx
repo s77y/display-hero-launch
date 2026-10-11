@@ -71,6 +71,25 @@ function nextClaim(previous: Claim): Claim {
 function Index() {
   const [claim, setClaim] = useState<Claim>(INITIAL_CLAIM);
   const [visible, setVisible] = useState(true);
+  const [cacheBuster, setCacheBuster] = useState("");
+
+  useEffect(() => {
+    // Cache-buster forces TikTok's webview to request a fresh URL instead of
+    // recycling a stale redirect.
+    setCacheBuster(`${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`);
+
+    // Preconnect / DNS-prefetch speeds up the first redirect hop when the CTA
+    // points at an external offer URL.
+    if (/^https?:\/\//.test(GET_STARTED_URL)) {
+      const origin = new URL(GET_STARTED_URL).origin;
+      for (const rel of ["preconnect", "dns-prefetch"]) {
+        const link = document.createElement("link");
+        link.rel = rel;
+        link.href = origin;
+        document.head.appendChild(link);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
@@ -117,12 +136,22 @@ function Index() {
           </div>
 
           <div className="rise-in mt-5" style={delay(140)}>
-            <Button
-              asChild
-              className="btn-lift mx-auto flex h-[52px] w-[92%] rounded-full text-[16px] font-semibold tracking-[-0.01em]"
+            {/* Plain anchor (no JS navigation, no _blank) so TikTok's webview
+                treats the tap as safe; the form below is a fallback path since
+                webviews almost always let form submissions through. */}
+            <form
+              action={GET_STARTED_URL}
+              method="get"
+              className="mx-auto w-[92%]"
             >
-              <a href={GET_STARTED_URL}>Get Started</a>
-            </Button>
+              <input type="hidden" name="cb" value={cacheBuster} />
+              <Button
+                type="submit"
+                className="btn-lift h-[52px] w-full rounded-full text-[16px] font-semibold tracking-[-0.01em]"
+              >
+                Get Started
+              </Button>
+            </form>
           </div>
 
           <div className="rise-in mt-4 flex justify-center" style={delay(170)}>
