@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import type React from "react";
 import {
   CreditCard,
   Mail,
@@ -32,6 +33,14 @@ const steps = [
   { icon: Mail, title: "Sign up with your email", text: "For notifications and rewards" },
   { icon: Smartphone, title: "Complete 2–3 simple offers", text: "The more you do, the more you earn" },
   { icon: CreditCard, title: "Receive your reward", text: "Paid to your Revolut account, add it to Apple or Google Pay" },
+];
+
+const sparks: [string, string, string][] = [
+  ["6px", "-9px", "0ms"],
+  ["10px", "4px", "450ms"],
+  ["3px", "10px", "900ms"],
+  ["12px", "-3px", "1300ms"],
+  ["-4px", "-10px", "650ms"],
 ];
 
 const claimants = [
@@ -90,9 +99,10 @@ function Index() {
   const delay = (ms: number) => ({ animationDelay: `${ms}ms` });
 
   return (
-    <main className="min-h-screen bg-background px-3 py-3 text-foreground sm:py-8">
-      <div className="rise-in mx-auto w-full max-w-md overflow-hidden rounded-[28px] border border-border/60 bg-card">
-        <div className="relative aspect-video">
+    <main className="bg-app min-h-screen px-4 pb-8 pt-6 text-foreground sm:pt-10">
+      <div className="rise-in relative z-10 mx-auto w-[86%] max-w-[360px]">
+        <div className="hero-halo pointer-events-none absolute -inset-6" />
+        <div className="hero-float relative aspect-video overflow-hidden rounded-[22px]">
           <img
             src={heroAsset.url}
             alt="Revolut promotional artwork"
@@ -100,11 +110,12 @@ function Index() {
             height={1080}
             className="h-full w-full object-cover"
           />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-card to-transparent" />
         </div>
+      </div>
 
-        <div className="px-5 pb-6">
-          <div className="rise-in -mt-1 text-center" style={delay(80)}>
+      <div className="rise-in glass relative mx-auto -mt-10 w-full max-w-md rounded-[30px] border border-border bg-card" style={delay(60)}>
+        <div className="px-5 pb-6 pt-16">
+          <div className="rise-in text-center" style={delay(80)}>
             <h1 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.035em]">
               Get £750 with Revolut
             </h1>
@@ -120,6 +131,28 @@ function Index() {
             >
               <a href={GET_STARTED_URL}>Get Started</a>
             </Button>
+          </div>
+
+          <div className="rise-in mt-5" style={delay(170)}>
+            <div className="mb-2 flex items-baseline justify-between text-[12px] tracking-[-0.005em]">
+              <span className="text-muted-foreground">Reward progress</span>
+              <span className="font-medium tabular-nums">£450 <span className="text-muted-foreground">/ £750</span></span>
+            </div>
+            <div className="relative h-2 rounded-full bg-secondary">
+              <div className="bar-fill relative h-full w-[60%] overflow-hidden rounded-full">
+                <span className="bar-shimmer absolute inset-y-0 left-0 w-1/3" />
+              </div>
+              <div className="pointer-events-none absolute top-1/2 left-[60%]">
+                {sparks.map((sp, i) => (
+                  <span
+                    key={i}
+                    className="fizz absolute h-1 w-1 rounded-full bg-primary"
+                    style={{ ["--fx" as string]: sp[0], ["--fy" as string]: sp[1], animationDelay: sp[2], marginTop: -2, marginLeft: -2 } as React.CSSProperties}
+                  />
+                ))}
+              </div>
+            </div>
+            <p className="mt-2 text-[11px] text-muted-foreground">60% complete — finish your offers to unlock the rest</p>
           </div>
 
           <div className="rise-in mt-4 flex justify-center" style={delay(200)}>
@@ -147,7 +180,7 @@ function Index() {
             <ol>
               {steps.map((s, i) => (
                 <li key={s.title} className="relative flex items-center gap-3.5 px-1 py-3.5">
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-secondary">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-brand/30 to-brand-glow/20 ring-1 ring-border">
                     <s.icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
                   </span>
                   <div className="min-w-0">
