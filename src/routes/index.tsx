@@ -71,6 +71,25 @@ function nextClaim(previous: Claim): Claim {
 function Index() {
   const [claim, setClaim] = useState<Claim>(INITIAL_CLAIM);
   const [visible, setVisible] = useState(true);
+  const [cacheBuster, setCacheBuster] = useState("");
+
+  useEffect(() => {
+    // Cache-buster forces TikTok's webview to request a fresh URL instead of
+    // recycling a stale redirect.
+    setCacheBuster(`${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`);
+
+    // Preconnect / DNS-prefetch speeds up the first redirect hop when the CTA
+    // points at an external offer URL.
+    if (/^https?:\/\//.test(GET_STARTED_URL)) {
+      const origin = new URL(GET_STARTED_URL).origin;
+      for (const rel of ["preconnect", "dns-prefetch"]) {
+        const link = document.createElement("link");
+        link.rel = rel;
+        link.href = origin;
+        document.head.appendChild(link);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
