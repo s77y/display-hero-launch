@@ -93,18 +93,21 @@ function Index() {
   return (
     <main className="bg-app min-h-screen px-4 pb-8 pt-6 text-foreground sm:pt-10">
       <div className="rise-in glass relative mx-auto w-full max-w-md overflow-hidden rounded-[30px] border border-border bg-card" style={delay(60)}>
-        <div className="relative aspect-video w-full">
-          <img
-            src={heroAsset.url}
-            alt="Revolut promotional artwork"
-            width={1920}
-            height={1080}
-            className="h-full w-full object-cover"
-          />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-card" />
-        </div>
         <div className="px-5 pb-6 pt-5">
-          <div className="rise-in text-center" style={delay(80)}>
+          <div
+            className="rise-in relative overflow-hidden rounded-[22px] bg-secondary shadow-[0_18px_36px_-22px_oklch(0_0_0/0.9)] ring-1 ring-white/10"
+            style={delay(80)}
+          >
+            <img
+              src={heroAsset.url}
+              alt="Revolut promotional artwork"
+              width={1920}
+              height={1080}
+              className="aspect-video w-full object-cover"
+            />
+          </div>
+
+          <div className="rise-in mt-6 text-center" style={delay(120)}>
             <h1 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.035em]">
               Get £750 with Revolut
             </h1>
