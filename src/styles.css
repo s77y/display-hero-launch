@@ -148,27 +148,21 @@
 @utility btn-lift {
   && {
     transform: translateZ(0);
+    will-change: transform;
     transition:
-      transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
-      box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1),
-      background-color 320ms cubic-bezier(0.22, 1, 0.36, 1);
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 360ms cubic-bezier(0.22, 1, 0.36, 1);
     box-shadow:
       0 10px 26px -12px oklch(1 0 0 / 0.4),
       0 2px 6px -2px oklch(0 0 0 / 0.6);
     &:hover,
     &:focus-visible {
       background-color: oklch(1 0 0);
-      transform: scale(1.035);
-      box-shadow:
-        0 18px 40px -14px oklch(1 0 0 / 0.55),
-        0 4px 12px -4px oklch(0 0 0 / 0.6);
+      transform: translateZ(0) scale(1.065) translateY(-2px);
     }
     &:active {
       background-color: oklch(0.94 0 0);
-      transform: scale(1.02);
-      box-shadow:
-        0 10px 24px -14px oklch(1 0 0 / 0.45),
-        0 2px 8px -2px oklch(0 0 0 / 0.6);
+      transform: translateZ(0) scale(1.03) translateY(-1px);
     }
   }
 }
