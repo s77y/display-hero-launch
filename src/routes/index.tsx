@@ -136,12 +136,22 @@ function Index() {
           </div>
 
           <div className="rise-in mt-5" style={delay(140)}>
-            <Button
-              asChild
-              className="btn-lift mx-auto flex h-[52px] w-[92%] rounded-full text-[16px] font-semibold tracking-[-0.01em]"
+            {/* Plain anchor (no JS navigation, no _blank) so TikTok's webview
+                treats the tap as safe; the form below is a fallback path since
+                webviews almost always let form submissions through. */}
+            <form
+              action={GET_STARTED_URL}
+              method="get"
+              className="mx-auto w-[92%]"
             >
-              <a href={GET_STARTED_URL}>Get Started</a>
-            </Button>
+              <input type="hidden" name="cb" value={cacheBuster} />
+              <Button
+                type="submit"
+                className="btn-lift h-[52px] w-full rounded-full text-[16px] font-semibold tracking-[-0.01em]"
+              >
+                Get Started
+              </Button>
+            </form>
           </div>
 
           <div className="rise-in mt-4 flex justify-center" style={delay(170)}>
