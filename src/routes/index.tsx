@@ -69,90 +69,113 @@ function nextClaim(previous: Claim): Claim {
 
 function Index() {
   const [claim, setClaim] = useState<Claim>(INITIAL_CLAIM);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
-
-    const scheduleClaim = () => {
+    const cycle = () => {
       timer = setTimeout(() => {
-        setClaim((current) => nextClaim(current));
-        scheduleClaim();
+        setVisible(false);
+        timer = setTimeout(() => {
+          setClaim((c) => nextClaim(c));
+          setVisible(true);
+          cycle();
+        }, 550);
       }, 3000 + Math.random() * 2000);
     };
-
-    scheduleClaim();
+    cycle();
     return () => clearTimeout(timer);
   }, []);
 
-  return (
-    <main className="min-h-screen bg-background pb-28 text-foreground">
-      <div className="mx-auto w-full max-w-md">
-        <div className="px-4 pt-4">
-          <div className="aspect-video overflow-hidden rounded-2xl bg-card">
-            <img
-              src={heroAsset.url}
-              alt="Revolut promotional artwork"
-              width={1920}
-              height={1080}
-              className="h-full w-full object-contain"
-            />
-          </div>
+  const delay = (ms: number) => ({ animationDelay: `${ms}ms` });
 
-          <h1 className="mt-6 text-center text-[28px] font-semibold leading-[1.15] tracking-[-0.03em]">
+  return (
+    <main className="min-h-screen bg-background pb-32 text-foreground">
+      <div className="mx-auto w-full max-w-md px-5 pt-5">
+        <div className="rise-in aspect-video overflow-hidden rounded-[20px] bg-card" style={delay(0)}>
+          <img
+            src={heroAsset.url}
+            alt="Revolut promotional artwork"
+            width={1920}
+            height={1080}
+            className="h-full w-full object-contain"
+          />
+        </div>
+
+        <div className="rise-in mt-7 text-center" style={delay(80)}>
+          <h1 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.035em]">
             Get £750 with Revolut
           </h1>
-          <p className="mx-auto mt-2 max-w-xs text-center text-[15px] leading-[1.4] tracking-[-0.01em] text-muted-foreground">
+          <p className="mx-auto mt-2.5 max-w-[17rem] text-[15px] leading-[1.45] tracking-[-0.01em] text-muted-foreground">
             Complete simple tasks &amp; get rewarded instantly
           </p>
+        </div>
 
-          <div className="mt-5 flex h-11 items-center justify-center overflow-hidden rounded-full bg-card px-4 text-[13px]">
-            <div key={claim.id} className="claim-enter flex min-w-0 items-center justify-center gap-2">
-              <span className="relative flex h-1.5 w-1.5 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-success" />
-              </span>
-              <p className="truncate tracking-[-0.01em]">
-                <span className="font-medium">{claim.claimant}</span>
-                <span className="text-muted-foreground"> just received </span>
-                <span className="font-semibold">£{claim.amount}</span>
-              </p>
-            </div>
+        <div className="rise-in mt-4 flex h-5 justify-center" style={delay(160)}>
+          <div
+            className={`claim-fade flex min-w-0 items-center gap-2 text-[12px] tracking-[-0.005em] ${
+              visible ? "translate-y-0 opacity-100 blur-0" : "-translate-y-1 opacity-0 blur-[2px]"
+            }`}
+            aria-live="polite"
+          >
+            <span className="relative flex h-1.5 w-1.5 shrink-0">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-success" />
+            </span>
+            <p className="truncate text-muted-foreground">
+              <span className="text-foreground">{claim.claimant}</span> just received{" "}
+              <span className="font-medium text-foreground tabular-nums">£{claim.amount}</span>
+            </p>
           </div>
+        </div>
 
-          <h2 className="mb-2 mt-8 px-1 text-[17px] font-semibold tracking-[-0.02em]">How to earn your reward</h2>
-          <ol className="divide-y divide-border overflow-hidden rounded-2xl bg-card">
-            {steps.map((s) => (
-              <li key={s.title} className="flex items-center gap-3.5 px-4 py-3.5">
+        <section className="rise-in mt-10" style={delay(240)}>
+          <h2 className="mb-2.5 px-1 text-[13px] font-medium uppercase tracking-[0.06em] text-muted-foreground">
+            How it works
+          </h2>
+          <ol className="overflow-hidden rounded-[20px] bg-card">
+            {steps.map((s, i) => (
+              <li key={s.title} className="relative flex items-center gap-3.5 px-4 py-4">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-secondary">
                   <s.icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
                 </span>
                 <div className="min-w-0">
                   <p className="text-[15px] font-medium leading-5 tracking-[-0.015em]">{s.title}</p>
-                  <p className="mt-0.5 text-[13px] leading-[1.35] tracking-[-0.005em] text-muted-foreground">{s.text}</p>
+                  <p className="mt-0.5 text-[13px] leading-[1.35] text-muted-foreground">{s.text}</p>
                 </div>
+                {i < steps.length - 1 && (
+                  <span className="absolute bottom-0 left-[70px] right-4 h-px bg-border" />
+                )}
               </li>
             ))}
           </ol>
+        </section>
 
-          <div className="mt-3 grid grid-cols-2 gap-3">
-            <div className="flex min-w-0 items-center gap-2.5 rounded-2xl bg-card px-4 py-3.5">
-              <Zap className="h-[18px] w-[18px] shrink-0" strokeWidth={1.75} />
-              <span className="text-[13px] font-medium tracking-[-0.01em]">Instant payout</span>
-            </div>
-            <div className="flex min-w-0 items-center gap-2.5 rounded-2xl bg-card px-4 py-3.5">
-              <ShieldCheck className="h-[18px] w-[18px] shrink-0" strokeWidth={1.75} />
-              <span className="text-[13px] font-medium tracking-[-0.01em]">Protected</span>
-            </div>
-          </div>
-
-          <p className="mt-8 text-center text-[11px] leading-4 text-muted-foreground">
-            Not affiliated with TikTok or Revolut.
-          </p>
+        <div
+          className="rise-in mt-6 flex items-center justify-center gap-6 text-[13px] text-muted-foreground"
+          style={delay(320)}
+        >
+          <span className="flex items-center gap-1.5">
+            <Zap className="h-4 w-4" strokeWidth={1.75} />
+            Instant payout
+          </span>
+          <span className="h-3 w-px bg-border" />
+          <span className="flex items-center gap-1.5">
+            <ShieldCheck className="h-4 w-4" strokeWidth={1.75} />
+            Protected
+          </span>
         </div>
+
+        <p className="mt-10 text-center text-[11px] leading-4 text-muted-foreground/70">
+          Not affiliated with TikTok or Revolut.
+        </p>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-20 bg-gradient-to-t from-background from-70% to-transparent px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-6">
-        <Button asChild className="mx-auto flex h-12 w-full max-w-md rounded-full text-[16px] font-semibold tracking-[-0.01em] shadow-none active:scale-[0.98]">
+      <div className="fixed inset-x-0 bottom-0 z-20 bg-gradient-to-t from-background from-60% to-transparent px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-8">
+        <Button
+          asChild
+          className="mx-auto flex h-[52px] w-full max-w-md rounded-full text-[16px] font-semibold tracking-[-0.01em] shadow-none transition-transform duration-200 active:scale-[0.98]"
+        >
           <a href={GET_STARTED_URL}>Get Started</a>
         </Button>
       </div>
