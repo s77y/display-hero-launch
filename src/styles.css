@@ -147,23 +147,23 @@
 }
 @utility btn-lift {
   && {
-    transform: translateZ(0);
+    transform: scale(1);
     will-change: transform;
     transition:
       transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
-      background-color 360ms cubic-bezier(0.22, 1, 0.36, 1);
+      background-color 360ms cubic-bezier(0.22, 1, 0.36, 1) !important;
     box-shadow:
       0 10px 26px -12px oklch(1 0 0 / 0.4),
       0 2px 6px -2px oklch(0 0 0 / 0.6);
-    &:hover,
-    &:focus-visible {
-      background-color: oklch(1 0 0);
-      transform: translateZ(0) scale(1.1) translateY(-3px);
-    }
-    &:active {
-      background-color: oklch(0.94 0 0);
-      transform: translateZ(0) scale(1.05) translateY(-1px);
-    }
+  }
+  &&:hover,
+  &&:focus-visible {
+    background-color: oklch(1 0 0);
+    transform: scale(1.1);
+  }
+  &&:active {
+    background-color: oklch(0.94 0 0);
+    transform: scale(1.06);
   }
 }
 @utility hero-float {
@@ -204,12 +204,6 @@
   }
   .claim-fade {
     transition: opacity 200ms linear;
-  }
-  .btn-lift:hover,
-  .btn-lift:focus-visible,
-  .btn-lift:active {
-    transform: none;
-    filter: none;
   }
 }
 
