@@ -51,7 +51,7 @@ const cities = [
   "Nottingham", "Brighton", "York", "Oxford", "Cambridge", "Leicester",
   "Southampton", "Swansea", "Aberdeen", "Dundee", "Reading", "Bath",
 ];
-const surnameInitials = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const surnameInitials = "ABCDEFGHIJKLMNOPQRSTUVWYZ";
 
 type Claim = { claimant: string; amount: string; id: number };
 
@@ -59,7 +59,7 @@ const INITIAL_CLAIM: Claim = { claimant: "Amelia. T from Bristol", amount: "48.5
 
 function randomAmount() {
   const chance = Math.random();
-  const [min, max] = chance < 0.45 ? [15, 50] : chance < 0.8 ? [50, 100] : [100, 200];
+  const [min, max] = chance < 0.65 ? [20, 50] : chance < 0.9 ? [50, 100] : [100, 200];
   return (min + Math.random() * (max - min)).toFixed(2);
 }
 
@@ -118,7 +118,7 @@ function Index() {
   const delay = (ms: number) => ({ animationDelay: `${ms}ms` });
 
   return (
-    <main className="bg-app min-h-screen px-4 pb-8 pt-6 text-foreground sm:pt-10">
+    <main className="page-fade bg-app min-h-screen px-4 pb-8 pt-6 text-foreground sm:pt-10">
       <div className="rise-in glass relative mx-auto w-full max-w-md overflow-hidden rounded-[30px] border border-border bg-card" style={delay(60)}>
         <div className="px-5 pb-6 pt-5">
           <div
