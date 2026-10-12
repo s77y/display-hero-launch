@@ -218,6 +218,9 @@
   .rise-in {
     animation: none;
   }
+  .page-fade {
+    animation: none;
+  }
   .claim-fade {
     transition: opacity 200ms linear;
   }
