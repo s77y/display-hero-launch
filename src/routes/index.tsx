@@ -29,9 +29,9 @@ export const Route = createFileRoute("/")({
 });
 
 const steps = [
-  { icon: Mail, title: "Sign up with your email", text: "For notifications and rewards" },
-  { icon: Smartphone, title: "Complete 2–3 simple offers", text: "The more you do, the more you earn" },
-  { icon: CreditCard, title: "Receive your reward", text: "Paid to your Revolut account, add it to Apple or Google Pay" },
+  { icon: Mail, title: "Confirm your details", text: "Get reward updates and access limited-time boosts." },
+  { icon: Smartphone, title: "Complete 2–3 partner offers", text: "Choose from simple offers to qualify for the promotion." },
+  { icon: CreditCard, title: "Get your Revolut reward!", text: "Receive your reward directly into your Revolut account." },
 ];
 
 
