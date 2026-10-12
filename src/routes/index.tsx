@@ -53,9 +53,9 @@ const cities = [
 ];
 const surnameInitials = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-type Claim = { claimant: string; amount: string; time: string; id: number };
+type Claim = { claimant: string; amount: string; id: number };
 
-const INITIAL_CLAIM: Claim = { claimant: "Amelia. T from Bristol", amount: "48.50", time: "Just now", id: 0 };
+const INITIAL_CLAIM: Claim = { claimant: "Amelia. T from Bristol", amount: "48.50", id: 0 };
 
 function randomAmount() {
   const chance = Math.random();
@@ -68,11 +68,9 @@ function nextClaim(previous: Claim): Claim {
   const forename = choices[Math.floor(Math.random() * choices.length)] ?? "Oliver";
   const initial = surnameInitials[Math.floor(Math.random() * surnameInitials.length)];
   const city = cities[Math.floor(Math.random() * cities.length)] ?? "London";
-  const minutes = Math.floor(Math.random() * 26);
   return {
     claimant: `${forename}. ${initial} from ${city}`,
     amount: randomAmount(),
-    time: minutes === 0 ? "Just now" : `${minutes} minute${minutes === 1 ? "" : "s"} ago`,
     id: previous.id + 1,
   };
 }
@@ -141,7 +139,7 @@ function Index() {
               Get £750 with Revolut
             </h1>
             <p className="mx-auto mt-2.5 whitespace-nowrap text-[15px] leading-[1.45] tracking-[-0.01em] text-muted-foreground">
-              Complete simple tasks &amp; get rewarded instantly
+              Complete simple tasks &amp; get rewarded instantly!
             </p>
           </div>
 
@@ -159,7 +157,7 @@ function Index() {
                 type="submit"
                 className="btn-lift h-[52px] w-full gap-3 rounded-full text-[18px] font-bold ring-1 ring-primary/30"
               >
-                Claim now!
+                Get Started
                 <ArrowRight aria-hidden="true" />
               </Button>
             </form>
@@ -176,13 +174,10 @@ function Index() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-success" />
               </span>
-              <div className="min-w-0">
-              <p className="leading-[1.5] text-muted-foreground">
+              <p className="min-w-0 leading-[1.5] text-muted-foreground">
                 <span className="text-foreground">{claim.claimant}</span> just received{" "}
                 <span className="font-medium text-foreground tabular-nums">£{claim.amount}</span>
               </p>
-              <p className="mt-0.5 text-[10px] leading-3.5 text-muted-foreground/75">{claim.time}</p>
-              </div>
             </div>
           </div>
 
