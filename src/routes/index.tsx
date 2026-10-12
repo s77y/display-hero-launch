@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
+  ArrowRight,
   CreditCard,
   Mail,
   ShieldCheck,
@@ -35,22 +36,26 @@ const steps = [
 ];
 
 
-const claimants = [
-  "Amelia. T from Bristol",
-  "Oliver. H from London",
-  "Freya. M from Manchester",
-  "Noah. W from Leeds",
-  "Isla. B from Edinburgh",
-  "George. P from Cardiff",
-  "Sophie. C from Birmingham",
-  "Theo. R from Liverpool",
-  "Maya. S from Glasgow",
-  "Arthur. J from Newcastle",
+const forenames = [
+  "Amelia", "Oliver", "Freya", "Noah", "Isla", "George", "Sophie", "Theo",
+  "Maya", "Arthur", "Aisha", "Harry", "Grace", "Muhammad", "Emily", "Jack",
+  "Priya", "Leo", "Olivia", "Oscar", "Chloe", "Arjun", "Evie", "Thomas",
+  "Fatima", "Charlie", "Imogen", "Isaac", "Zara", "James", "Poppy", "Adam",
+  "Hannah", "Finlay", "Layla", "Joshua", "Ruby", "Daniel", "Alice", "Ethan",
+  "Sienna", "Yusuf", "Jessica", "Lucas", "Niamh", "Rory", "Harriet", "Dylan",
+  "Eleanor", "Nathan", "Maisie", "Reuben", "Anaya", "Louis", "Florence", "Ben",
 ];
+const cities = [
+  "Bristol", "London", "Manchester", "Leeds", "Edinburgh", "Cardiff",
+  "Birmingham", "Liverpool", "Glasgow", "Newcastle", "Belfast", "Sheffield",
+  "Nottingham", "Brighton", "York", "Oxford", "Cambridge", "Leicester",
+  "Southampton", "Swansea", "Aberdeen", "Dundee", "Reading", "Bath",
+];
+const surnameInitials = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-type Claim = { claimant: string; amount: string; id: number };
+type Claim = { claimant: string; amount: string; time: string; id: number };
 
-const INITIAL_CLAIM: Claim = { claimant: "Amelia. T from Bristol", amount: "48.50", id: 0 };
+const INITIAL_CLAIM: Claim = { claimant: "Amelia. T from Bristol", amount: "48.50", time: "Just now", id: 0 };
 
 function randomAmount() {
   const chance = Math.random();
@@ -59,11 +64,15 @@ function randomAmount() {
 }
 
 function nextClaim(previous: Claim): Claim {
-  const choices = claimants.filter((claimant) => claimant !== previous.claimant);
-  const claimant = choices[Math.floor(Math.random() * choices.length)] ?? "Oliver. H from London";
+  const choices = forenames.filter((name) => !previous.claimant.startsWith(`${name}.`));
+  const forename = choices[Math.floor(Math.random() * choices.length)] ?? "Oliver";
+  const initial = surnameInitials[Math.floor(Math.random() * surnameInitials.length)];
+  const city = cities[Math.floor(Math.random() * cities.length)] ?? "London";
+  const minutes = Math.floor(Math.random() * 26);
   return {
-    claimant,
+    claimant: `${forename}. ${initial} from ${city}`,
     amount: randomAmount(),
+    time: minutes === 0 ? "Just now" : `${minutes} minute${minutes === 1 ? "" : "s"} ago`,
     id: previous.id + 1,
   };
 }
@@ -92,6 +101,7 @@ function Index() {
   }, []);
 
   useEffect(() => {
+    setClaim((previous) => nextClaim(previous));
     let timer: ReturnType<typeof setTimeout>;
     const cycle = () => {
       timer = setTimeout(() => {
@@ -147,16 +157,17 @@ function Index() {
               <input type="hidden" name="cb" value={cacheBuster} />
               <Button
                 type="submit"
-                className="btn-lift h-[52px] w-full rounded-full text-[16px] font-semibold tracking-[-0.01em]"
+                className="btn-lift h-[52px] w-full gap-3 rounded-full text-[18px] font-bold ring-1 ring-primary/30"
               >
-                Get Started
+                Claim now!
+                <ArrowRight aria-hidden="true" />
               </Button>
             </form>
           </div>
 
           <div className="rise-in mt-4 flex justify-center" style={delay(170)}>
             <div
-              className={`claim-fade flex max-w-full items-center gap-2 rounded-full bg-secondary px-3 py-1.5 text-[12px] tracking-[-0.005em] ${
+              className={`claim-fade flex max-w-full items-center gap-2 rounded-2xl bg-secondary px-3 py-2 text-[12px] ${
                 visible ? "translate-y-0 opacity-100 blur-0" : "translate-y-0.5 opacity-0 blur-[2px]"
               }`}
               aria-live="polite"
@@ -165,10 +176,13 @@ function Index() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-success" />
               </span>
-              <p className="truncate text-muted-foreground">
+              <div className="min-w-0">
+              <p className="leading-[1.5] text-muted-foreground">
                 <span className="text-foreground">{claim.claimant}</span> just received{" "}
                 <span className="font-medium text-foreground tabular-nums">£{claim.amount}</span>
               </p>
+              <p className="mt-0.5 text-[10px] leading-3.5 text-muted-foreground/75">{claim.time}</p>
+              </div>
             </div>
           </div>
 
