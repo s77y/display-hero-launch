@@ -233,7 +233,7 @@ function Index() {
         </div>
       </div>
 
-      <p className="mx-auto mt-5 max-w-md text-center text-[11px] leading-4 text-muted-foreground/70">
+      <p className="rise-in mx-auto mt-5 max-w-md text-center text-[11px] leading-4 text-muted-foreground/70" style={delay(380)}>
         Not affiliated with TikTok or Revolut.
       </p>
     </main>
