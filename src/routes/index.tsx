@@ -130,7 +130,7 @@ function Index() {
             <h1 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.035em]">
               Get £750 with Revolut
             </h1>
-            <p className="mx-auto mt-2.5 max-w-[17rem] text-[15px] leading-[1.45] tracking-[-0.01em] text-muted-foreground">
+            <p className="mx-auto mt-2.5 whitespace-nowrap text-[15px] leading-[1.45] tracking-[-0.01em] text-muted-foreground">
               Complete simple tasks &amp; get rewarded instantly
             </p>
           </div>
