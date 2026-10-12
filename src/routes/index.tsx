@@ -29,9 +29,9 @@ export const Route = createFileRoute("/")({
 });
 
 const steps = [
-  { icon: Mail, title: "Sign up with your email", text: "For notifications and rewards" },
-  { icon: Smartphone, title: "Complete 2–3 simple offers", text: "The more you do, the more you earn" },
-  { icon: CreditCard, title: "Receive your reward", text: "Paid to your Revolut account, add it to Apple or Google Pay" },
+  { icon: Mail, title: "Confirm your details", text: "Get reward updates and access limited-time boosts." },
+  { icon: Smartphone, title: "Complete 2–3 partner offers", text: "Choose from simple offers to qualify for the promotion." },
+  { icon: CreditCard, title: "Get your Revolut reward!", text: "Receive your reward directly into your Revolut account." },
 ];
 
 
@@ -130,7 +130,7 @@ function Index() {
             <h1 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.035em]">
               Get £750 with Revolut
             </h1>
-            <p className="mx-auto mt-2.5 max-w-[17rem] text-[15px] leading-[1.45] tracking-[-0.01em] text-muted-foreground">
+            <p className="mx-auto mt-2.5 whitespace-nowrap text-[15px] leading-[1.45] tracking-[-0.01em] text-muted-foreground">
               Complete simple tasks &amp; get rewarded instantly
             </p>
           </div>
