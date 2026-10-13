@@ -112,7 +112,7 @@
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -121,7 +121,7 @@
 }
 
 @utility rise-in {
-  animation: rise-in 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise-in 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @utility claim-fade {
@@ -132,7 +132,7 @@
 }
 
 @utility page-fade {
-  animation: page-fade 600ms ease-out both;
+  animation: page-fade 700ms ease-out both;
 }
 @keyframes page-fade {
   from { opacity: 0; }
@@ -215,15 +215,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-float, .fizz, .bar-shimmer { animation: none; }
-  .rise-in {
-    animation: none;
-  }
-  .page-fade {
-    animation: none;
-  }
-  .claim-fade {
-    transition: opacity 200ms linear;
-  }
 }
 
 .dark {
