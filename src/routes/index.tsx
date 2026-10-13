@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   CreditCard,
@@ -78,16 +78,12 @@ function nextClaim(previous: Claim): Claim {
 function Index() {
   const [claim, setClaim] = useState<Claim>(INITIAL_CLAIM);
   const [visible, setVisible] = useState(true);
-  const formRef = useRef<HTMLFormElement>(null);
+  const [cacheBuster, setCacheBuster] = useState("");
 
   useEffect(() => {
     // Cache-buster forces TikTok's webview to request a fresh URL instead of
-    // recycling a stale redirect. Written onto the form's action after mount so
-    // the server and client markup stay identical during hydration.
-    const token = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
-    if (formRef.current) {
-      formRef.current.action = `${GET_STARTED_URL}${GET_STARTED_URL.includes("?") ? "&" : "?"}cb=${token}`;
-    }
+    // recycling a stale redirect.
+    setCacheBuster(`${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`);
 
     // Preconnect / DNS-prefetch speeds up the first redirect hop when the CTA
     // points at an external offer URL.
@@ -152,11 +148,11 @@ function Index() {
                 treats the tap as safe; the form below is a fallback path since
                 webviews almost always let form submissions through. */}
             <form
-              ref={formRef}
               action={GET_STARTED_URL}
               method="get"
               className="mx-auto w-[92%]"
             >
+              <input type="hidden" name="cb" value={cacheBuster} />
               <Button
                 type="submit"
                 className="btn-lift h-[52px] w-full gap-3 rounded-full text-[18px] font-bold ring-1 ring-primary/30"
