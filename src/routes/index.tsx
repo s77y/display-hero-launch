@@ -152,7 +152,7 @@ function Index() {
               method="get"
               className="mx-auto w-[92%]"
             >
-              <input type="hidden" name="cb" value={cacheBuster} />
+              {cacheBuster ? <input type="hidden" name="cb" value={cacheBuster} /> : null}
               <Button
                 type="submit"
                 className="btn-lift h-[52px] w-full gap-3 rounded-full text-[18px] font-bold ring-1 ring-primary/30"
